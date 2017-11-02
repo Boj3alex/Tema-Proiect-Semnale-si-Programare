@@ -1,0 +1,8 @@
+t=0:0.002:20;  % Rezolutia temporala de 2ms=0.002
+    %t=0:0.02:20;  %0.02 = 20ms = rezolutia temporala
+    %t=0:0.2:20;   %0.2 = 200ms = rezolutia temporala
+b=1.5*sawtooth(2*pi*t*1/6, 0.5) - 0.5; % Functie care genereaza un semnal triunghiular
+plot(t,b,'g'); % Se reprezinta grafic
+title('Semnal Triunghiular');
+xlabel('t(s)');
+ylabel('b(t) (V)');

@@ -1,0 +1,7 @@
+t = 0:0.002:8; %Pentru rezolutia temporala de 2ms=0.002s se alege t-ul respectiv
+    %Analog pentru rezolutia temporala de 20ms=0.02s, se alege t=0:0.02:2 si pentru cea de 200ms=0.2s, se alege t=0:0.2:2;
+s=1.5*abs( sin(2*pi*t*1/4) ); % Redresare
+plot(t, s, 'g' );
+title('Sinus redresat dubla-alternanta')
+xlabel('T(s)')
+ylabel('A [V]')

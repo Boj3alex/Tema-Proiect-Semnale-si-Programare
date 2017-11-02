@@ -1,0 +1,8 @@
+t=0:0.002:2;  %Rezolutia temporala de 2ms
+    %t=0:0.02:2;  %0.02 = 20ms = rezolutia temporala
+    %t=0:0.2:2;   %0.2 = 200ms = rezolutia temporala
+b=0.75*square(2*pi*t, 25) - 0.25; %functie asemanatoare functiei sin. Factor de umplere=25%
+plot(t,b,'g') %desenarea graficului
+title('Semnal Dreptunghiular');
+xlabel('t(s)');
+ylabel('b(t) (V)');

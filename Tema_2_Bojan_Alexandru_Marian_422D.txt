@@ -1,0 +1,40 @@
+syms t; %am creat simbolic variabila t
+P=40; %perioada semnalului
+N=50; %numarul de coeficienti
+D=3; %durata semnalului dreptunghiular
+t1=0:0.02:80;
+w=(2*pi)/P; % pulsatia semnalului
+x=1;
+x1=0.5*square(t1*2*pi*1/P,7.5);%semnalul initial
+X0=int(x,t,0,D); %calculul componentei continue
+disp('X0=');
+disp(X0);
+a=zeros(1,N); %initializarea lui a pe care il vom folosi pentru amplitudini
+f=zeros(1,N); %initializarea lui f pe care il vom folosi pentru frecvente
+y=0; %initializarea lui y cu care vor reconstrui semnalul
+for k=1:N
+    c=x*exp(-1j*w*k*t);
+    Xk=int(c,t,0,D); %calcului coeficientilor seriei Fourier complexe
+    a(k)=sqrt((imag(Xk))^2+(real(Xk))^2); %amplitudinile
+    f(k)=k/P; % frecventele
+    S=['X',num2str(k),'='];
+    disp(S);
+    disp(Xk);
+    y=y+2*(1/P)*(Xk*exp(1j*w*k*t1)); %reconstructia semnalului
+end
+y1=y+1/P*X0;
+figure (1)
+stem(0,X0,'-r') %amplitudinea pentru componenta continua
+hold on
+stem(f,a,'-r') %spectrul de amplitudini pentru frecvente pozitive
+hold on
+stem(-f,a,'-r') %spectrul de amplitudini pentru frecvente negative
+title('Spectrul de amplitudini')
+xlim ([-N/P N/P])
+figure (2)
+plot(t1,x1+0.5,'-r') %reprezentarea semnalului initial
+hold on
+plot(t1,y1,'-b') %reprezentarea semnalului reconstruit
+title('Reprezentarea semnalului initial si a celui reconstruit')
+axis ([0 80 -2 2])
+    
